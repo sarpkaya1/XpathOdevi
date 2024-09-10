@@ -13,7 +13,7 @@ public class IkinciXpathTest {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        System.setProperty("chromeDriver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
@@ -24,29 +24,29 @@ public class IkinciXpathTest {
         driver.get("https://demoqa.com/webtables");
 
         // "ADD" düğmesini tıklayın
-        WebElement addButton = driver.findElement(By.xpath("//*[@id='addNewRecordButton']"));
+        WebElement addButton = driver.findElement(By.xpath("//button[@id='addNewRecordButton']"));
         addButton.click();
 
         // Formu doldurun
-        driver.findElement(By.xpath("//*[@id='firstName']")).sendKeys("John");
-        driver.findElement(By.xpath("//*[@id='lastName']")).sendKeys("Doe");
-        driver.findElement(By.xpath("//*[@id='userEmail']")).sendKeys("john.doe@example.com");
-        driver.findElement(By.xpath("//*[@id='age']")).sendKeys("30");
-        driver.findElement(By.xpath("//*[@id='salary']")).sendKeys("50000");
-        driver.findElement(By.xpath("//*[@id='department']")).sendKeys("HR");
+        driver.findElement(By.xpath("//input[@id='firstName']")).sendKeys("Sarp");
+        driver.findElement(By.xpath("//input[@id='lastName']")).sendKeys("Kaya");
+        driver.findElement(By.xpath("//input[@id='userEmail']")).sendKeys("skaya@example.com");
+        driver.findElement(By.xpath("//input[@id='age']")).sendKeys("30");
+        driver.findElement(By.xpath("//input[@id='salary']")).sendKeys("50000");
+        driver.findElement(By.xpath("//input[@id='department']")).sendKeys("HR");
 
         // "Submit" düğmesini tıklayın
-        driver.findElement(By.xpath("//*[@id='submit']")).click();
+        driver.findElement(By.xpath("//button[@id='submit']")).click();
 
         // Eklenen kaydı düzenleyin (örneğin 4. satırdaki kaydı düzenleyelim)
-        WebElement editButton = driver.findElement(By.xpath("//*[@id='edit-record-4']"));
+        WebElement editButton = driver.findElement(By.cssSelector(".rt-tbody > div:nth-of-type(4) span:nth-of-type(1) path:nth-of-type(1)"));
         editButton.click();
 
         // Yaşı değiştirin ve tekrar submit edin
-        WebElement ageField = driver.findElement(By.xpath("//*[@id='age']"));
+        WebElement ageField = driver.findElement(By.xpath("//input[@id='age']"));
         ageField.clear();
         ageField.sendKeys("35");
-        driver.findElement(By.xpath("//*[@id='submit']")).click();
+        driver.findElement(By.xpath("//button[@id='submit']")).click();
 
         // Kaydın değiştiğini kontrol edin
         WebElement ageValue = driver.findElement(By.xpath("//div[@class='rt-tbody']//div[text()='35']"));

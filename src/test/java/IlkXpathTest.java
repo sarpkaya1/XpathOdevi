@@ -14,7 +14,7 @@ public class IlkXpathTest {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        System.setProperty("chromeDriver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
@@ -25,17 +25,17 @@ public class IlkXpathTest {
         driver.get("https://demoqa.com/elements");
 
         // "Buttons" seçeneğini tıklayın
-        WebElement buttonsMenu = driver.findElement(By.xpath("//*[@id='item-4']"));
+        WebElement buttonsMenu = driver.findElement(By.xpath("//span[.='Buttons']"));
         buttonsMenu.click();
 
         // "Click Me" düğmesine çift tıklayın
         Actions actions = new Actions(driver);
-        WebElement clickMeButton = driver.findElement(By.xpath("//*[@id='doubleClickBtn']"));
+        WebElement clickMeButton = driver.findElement(By.xpath("//button[@id='RKDFQ']"));
         actions.doubleClick(clickMeButton).perform();
 
         // Görünen mesajın doğru olduğunu kontrol edin
-        WebElement message = driver.findElement(By.xpath("//*[@id='doubleClickMessage']"));
-        Assert.assertEquals(message.getText(), "You have done a double click", "Mesaj yanlış.");
+        WebElement message = driver.findElement(By.xpath("//p[@id='dynamicClickMessage']"));
+        Assert.assertEquals(message.getText(), "You have done a dynamic click", "Mesaj yanlış.");
     }
 
     @AfterTest
